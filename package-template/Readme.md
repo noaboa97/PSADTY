@@ -10,7 +10,7 @@ Path to local files
 
 ## Handling of components
 ### Start Menu icon
-By 3rd party / by SoftwarePackageModule
+By 3rd party / by PSADTY
 
 ### Uninstall entry
-By 3rd party / by SoftwarePackageModule
+By 3rd party / by PSADTY
