@@ -1,0 +1,113 @@
+softwarePackageModuleVersion: 2.0.2
+# [Required] Meta info
+appMetadata:
+  # [Required] Name of the Vendor / Developer (string)
+  appVendor: someCompnay
+  # [Required] Name of the Software Products (string)
+  appName: someAppname
+  appPackagePublisher: Swiss TPH
+  appCategory: Swiss TPH
+  appLang: EN
+  # Software architecutre (x86, x64)
+  appArch: x64
+  # Version of the application (string)
+  appVersion: 1.2.3
+  appRegSTPHPackageGuid: Generate with New-Guid in PowerShell e.g. 08e51ba4-6c87-4f10-9e96-de3944d0a6f0
+  # [Required] download link for SCCM backend
+  appDownloadLink:   https://google.com/chrome oder so
+  # [Required] for Software Center description
+  appSccmDescription: Description of the app for SCCM / Software Center
+    # [Required] for User link to docu
+  appSccmUserDocumentationLink: https://google.com/documentation
+
+yamlMetadata:
+  yamlConfigRevision: 01
+  yamlConfigRevisionDate: current Date
+  yamlConfigAuthor: your name
+
+# [Required] File name of the installation file (.exe, .msi)
+installerName: vitoMed2.exe
+
+# Parameters for the installation. They are appended to the installer path.
+installParameter: /S /f1".\vitoMed2_FullInstall.iss" /f2"C:\Windows\Logs\Software\vitoMed2_Install.log"
+
+# Uninstaller Name (including Path) (not used for MSI)
+uninstallerName: vitoMed2.exe
+
+# uninstall Parameter      (if MSI put MSI GUID here)
+uninstallParameter: /S /f1".\vitoMed2_Uninstall.iss" /f2"C:\Windows\Logs\Software\vitoMed2_Uninstall.log"
+
+# List Guids here to uninstall only if necesary. MSI Guids need the be wrapped into singel quote ''. Remove if not needed
+additionalMSIUninstaller: 
+  - '{BC7B8DE0-92AB-4E92-ABB2-B7535AF3CF29}'
+  - '{716E0306-8318-4364-8B8F-0CC4E9376BAC}'
+
+# [Required] at least one entry with main: true
+# Remove other 2 examples if not needed. 
+originalAppRegKey:
+  - path: HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{1A01FADB-653A-4992-9B90-109E0B2034DA}
+    hide: true
+    main: true
+  - path: HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{34FDD729-2148-FD58-904F-C928BD4FA103}
+    hide: true
+    main: false
+  - path: HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{D7F49110-75C5-425E-884F-15ECB72F69D6}
+    hide: true
+    main: false
+
+# Files, Folders or Link to delete after installtion is finished. Remove examples if not needed. Otherwise replace 
+deleteFilePathsAfterInstall:
+  - C:\Users\Public\Desktop\Vitodata AG - QuickSupport.lnk
+  - C:\Users\Public\Desktop\vitoMed.lnk
+  - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Vitodata\vitoMed.lnk
+
+# [Required] How often the user can defer the installation
+maxUserDefer: 3
+
+# Ask to close the following apps for installation (without .exe)
+closeApps:
+  - someApp
+  - secondApp
+
+# [Required] If true, appExePath is required (only use when MSI doesn't create shortcut in start menu) Remove startIn if not needed.
+shortcut:
+  startMenu:
+    startIn: c:\somepath
+  desktop:
+    startIn: c:\somepath
+
+# [Required] File location of the exe to start the application after it is installed (needed for shortcut)
+appExePath: C:\somepath
+
+# Delete file, folder after uninstall of application
+deleteFilePathsOnUninstall:
+  - C:\somepath
+
+# copy jobs if files need to be copied. Remove examples
+copy:
+# Copy from network share
+  - source: \\someServer\someDirectory\
+    destination: C:\somepath
+    step: post-install
+# load Backup of a config file or ini
+  - source: C:\Backup\someFile.ini
+    destination: C:\somePath\someFolder
+    step: post-install
+# create backup of a config file or ini
+  - source: C:\somePath\someFolder\someFile.ini
+    destination: C:\Backup
+    step: pre-uninstall
+    
+# create firewall rules
+firewall:
+  - ruleName: vitoMed2
+    ruleAction: Allow
+    ruleProtocols:
+    - TCP
+    - UDP
+    ruleProfile: Any
+    ruleProgram: C:\VITODATA\vitoExe\Version 2.0\vitoAdmin.exe
+    ruleDirection: Inbound
+
+# File location of the icon (.ico, .exe)
+displayIcon: C:\vitodata\vitoExe\Version 2.0\vitoMed.exe
