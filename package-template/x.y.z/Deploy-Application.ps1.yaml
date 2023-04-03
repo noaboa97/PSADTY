@@ -5,14 +5,14 @@ appMetadata:
   appVendor: someCompnay
   # [Required] Name of the Software Products (string)
   appName: someAppname
-  appPackagePublisher: Swiss TPH
-  appCategory: Swiss TPH
+  appPackagePublisher: YourCompany
+  appCategory: YourCompanyORappCategory
   appLang: EN
   # Software architecutre (x86, x64)
   appArch: x64
   # Version of the application (string)
   appVersion: 1.2.3
-  appRegSTPHPackageGuid: Generate with New-Guid in PowerShell e.g. 08e51ba4-6c87-4f10-9e96-de3944d0a6f0
+  appRegPackageGuid: Generate with New-Guid in PowerShell e.g. 08e51ba4-6c87-4f10-9e96-de3944d0a6f0
   # [Required] download link for SCCM backend
   appDownloadLink:   https://google.com/chrome oder so
   # [Required] for Software Center description
